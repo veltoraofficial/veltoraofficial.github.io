@@ -144,7 +144,7 @@ input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radiu
 <div><h4>Products</h4><a onclick="showPage('retail')">Veltora Retail Suite</a><a onclick="showPage('erp')">School ERP</a><a onclick="openModal('demo','SaleVix POS')">SaleVix POS</a></div>
 <div><h4>Contact</h4><p>Email: hello@veltora.com</p><p>HQ: Singapore (Since 2025)</p><p>Karachi, Pakistan — 74400</p></div>
 </div></div>
-<div class="copy">© 2026 VELTORA - In Perfect Hands. All rights reserved. </div>
+<div class="copy" id="copyBtn">© 2026 VELTORA - In Perfect Hands. All rights reserved. </div>
 </footer>
 <div class="modal" id="mainModal"><div class="modal-box"><span class="close" onclick="closeModal()">×</span><h2 id="modalTitle">Book Demo</h2><p style="color:#666;font-size:14px">Fill form, team aap se rabta karegi.</p><form onsubmit="saveLead(event)"><input id="fName" placeholder="Full Name *" required><input id="fPhone" placeholder="Phone / WhatsApp *" required><input id="fEmail" type="email" placeholder="Email *" required><select id="fProduct"><option>Veltora Retail Suite</option><option>SaleVix POS</option><option>Veltora School ERP</option><option>General Inquiry</option></select><textarea id="fMsg" placeholder="School / Business Name + Message"></textarea><button class="btn" style="width:100%" type="submit">Submit & Save →</button><p style="font-size:12px;color:#888;text-align:center;margin-top:10px">Data securely save hoga. Delete sirf Developer kar sakta hai.</p></form></div></div>
 <div class="modal" id="devModal"><div class="modal-box" style="max-width:720px"><span class="close" onclick="closeDev()">×</span><h2>🔐 Developer Panel - Only For You</h2><div id="devLogin"><p style="color:#666;font-size:14px">Sirf developer ka access hai. Apna STRONG password dalo.</p><input id="devPass" type="password" placeholder="Developer Password"><button class="btn" style="width:100%" onclick="devLogin()">Unlock Panel</button></div>
@@ -153,7 +153,7 @@ input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radiu
 <p>Total Leads: <b id="totalLeads">0</b> | <button class="btn btn-small" onclick="exportData()">Download CSV</button> <button class="btn-red btn-small" onclick="deleteAllData()">Delete All Data</button></p><div style="overflow:auto"><table class="admin-table"><thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Product</th><th>Date</th><th>Action</th></tr></thead><tbody id="leadsTable"></tbody></table></div></div></div></div>
 <div class="toast" id="toast"></div>
 <script>
-https://script.google.com/macros/s/AKfycbwx1SN6-raVT1ARQVN4orfidIYfxrwS6gbTDBRjH7KyFK87eIls50CVYbeYnp6VLoRd/exec
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwx1SN6-raVT1ARQVN4orfidIYfxrwS6gbTDBRjH7KyFK87eIls50CVYbeYnp6VLoRd/exec";
 let currentType='demo', tempLogo='';
 function showPage(p){document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
@@ -165,7 +165,7 @@ function saveLead(e){
   const lead={name:document.getElementById('fName').value,phone:document.getElementById('fPhone').value,email:document.getElementById('fEmail').value,product:document.getElementById('fProduct').value,msg:document.getElementById('fMsg').value,date:new Date().toLocaleString(),type:currentType};
   const leads=getLeads();leads.unshift(lead);localStorage.setItem('veltora_leads',JSON.stringify(leads));updateCount();closeModal();e.target.reset();
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(lead)}).catch(()=>{});
-  showToast('✅ Shukriya! Aapka data save ho gaya.');
+  showToast('✅ Thank You!data save sucessfully.');
 }
 function updateCount(){const el=document.getElementById('leadCount');if(el)el.innerText=getLeads().length+' Leads Saved'}
 function showToast(t){const el=document.getElementById('toast');el.innerText=t;el.style.display='block';setTimeout(()=>el.style.display='none',3500)}
